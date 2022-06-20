@@ -1,0 +1,8 @@
+.layout {
+  height: 100vh;
+  overflow: auto;
+}
+
+.content {
+  padding: 0 50px;
+}

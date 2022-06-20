@@ -1,0 +1,15 @@
+.container {
+  margin-top: 10px;
+}
+
+.price {
+    cursor: pointer;
+}
+
+.up {
+  color: green;
+}
+
+.down {
+  color: red;
+}

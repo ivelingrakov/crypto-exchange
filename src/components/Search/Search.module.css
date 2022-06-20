@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered {
+  text-align: center !important;
+}
+
+.select {
+  margin-top: 5px !important;
+  width: 210px !important;
+}
