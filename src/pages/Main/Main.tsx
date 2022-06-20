@@ -30,7 +30,10 @@ const Main: React.FC = () => {
               const price = priceDataParser(res);
               !price && intervals[exchange]?.stopInterval();
               dispatch({ type: 'SET_PRICE', payload: { exchange, price } })
-            }).catch(() => intervals[exchange]?.stopInterval()))
+            }).catch(() => {
+              dispatch({ type: 'STOP_LOADING', payload: { exchange } })
+              intervals[exchange]?.stopInterval()
+            }))
         intervals[exchange]?.startInterval();
       })
     } else {
