@@ -24,7 +24,7 @@ export type Context = {
 export type Dispatch = (action: Action) => void
 
 export type Action = {
-  type: 'SET_PRICE' | 'RESET_DATA' | 'SET_LOADING' | 'SET_ORDER'
+  type: 'SET_PRICE' | 'RESET_DATA' | 'SET_LOADING' | 'SET_ORDER' | 'STOP_LOADING'
   payload: { exchange: string, price: number } | SortOrder
 }
 

@@ -47,6 +47,16 @@ const exchangeReducer = (state: State, { type, payload }: Action) => {
       })
       return clonedState;
     }
+    case 'STOP_LOADING': {
+      const { exchange } = payload as { exchange: string };
+      return {
+        ...state,
+        [exchange]: {
+          ...state[exchange],
+          loading: false
+        }
+      }
+    }
     default:
       return state;
   }
