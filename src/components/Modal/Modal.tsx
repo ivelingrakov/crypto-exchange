@@ -29,7 +29,7 @@ const Modal: React.FC<Props> = ({ exchangeName, visible, close }) => {
       const { getHistoricalInfoUrl, historicalDataParser } = exchange!;
       const url = getHistoricalInfoUrl(pair);
       setLoading(true);
-      fetch(url).then(res => res.json()).then(res => {
+      fetch(`http://localhost:3003?target=${encodeURIComponent(url)}`).then(res => res.json()).then(res => {
         const data = historicalDataParser(res);
         data && setTrades(data);
       }).finally(() => setLoading(false))
