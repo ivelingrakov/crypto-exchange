@@ -1,14 +1,35 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
-import { Input, Select, Form } from 'antd';
+import { Input, Select } from 'antd';
 import { ExchangeContext } from '../../exchange/exchange-context';
 import Container from '../Container/Container';
 
 import styles from './Search.module.css';
-import { SortOrder } from '../../utils/types';
-import { extractBase, extractPair, extractQuote } from '../../utils';
+import { NotificationType, SortOrder } from '../../utils/types';
+import { showNotification } from '../../utils/notifications';
+import { extractBase, extractQuote } from '../../utils';
 import classNames from 'classnames';
+
+const getNotificationDetails = (titlePlaceholder: string, messagePlaceholder: string) =>
+  [`Empty ${titlePlaceholder}currency pair`, `Please add ${messagePlaceholder} currency`]
+
+const isValidPair = (base: string, quote: string): boolean => {
+  switch (true) {
+    case !base.trim() && !quote.trim():
+      showNotification(NotificationType.Warning, ...getNotificationDetails('', 'base and quote'));
+      return false;
+    case !base.trim():
+      showNotification(NotificationType.Warning, ...getNotificationDetails('base ', 'base'));
+      return false;
+    case !quote.trim():
+      showNotification(NotificationType.Warning, ...getNotificationDetails('quote ', 'quote'));
+      return false;
+    default:
+      return true;
+  }
+  // add additional validation
+}
 
 const Main: React.FC = () => {
   const [base, setBase] = useState<string>('');
@@ -17,10 +38,8 @@ const Main: React.FC = () => {
   const { pathname } = useLocation();
   const { dispatch }: any = useContext(ExchangeContext);
 
-  const onSearch = () => {
-
-    navigate(`/${base}/${quote}`);
-  }
+  const onSearch = () =>
+    isValidPair(base, quote) && navigate(`/${base}/${quote}`);
 
   useEffect(() => {
     if (pathname.length > 1) {
