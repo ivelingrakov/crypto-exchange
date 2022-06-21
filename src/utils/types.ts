@@ -46,3 +46,7 @@ export enum SortOrder {
   Desk,
   None
 }
+
+export enum NotificationType {
+  Warning = 'warning'
+}
