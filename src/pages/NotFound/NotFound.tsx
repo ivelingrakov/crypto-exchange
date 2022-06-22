@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Result } from 'antd';
 import Layout from '../../components/Layout/Layout';
 
@@ -7,7 +8,7 @@ const NotFound: React.FC = () => (
     <Result
       status="404"
       title="404"
-      subTitle="Sorry, the page you visited does not exist."
+      subTitle={<div>Sorry, the page you visited does not exist. Try <Link to='/NEXO/USDT'>NEXO/USDT</Link></div>}
     />
   </Layout>
 );
