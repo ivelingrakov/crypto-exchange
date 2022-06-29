@@ -15,7 +15,7 @@ const Details: React.FC = () => {
   useEffect(() => {
     const pair = extractPair(pathname);
     setLoading(true);
-    fetch(`https://api.binance.com/api/v3/exchangeInfo?symbol=${pair}`)
+    fetch(`/proxy?target=${encodeURIComponent(`https://api.binance.com/api/v3/exchangeInfo?symbol=${pair}`)}`)
       .then(res => res.json()).then(data => data?.symbols && setDetails(data.symbols[0]))
       .finally(() => setLoading(false));
   }, [])

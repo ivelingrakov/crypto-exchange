@@ -24,7 +24,7 @@ const Main: React.FC = () => {
       exchanges.forEach(({ title: exchange, getPriceUrl, priceDataParser }) => {
         const priceUrl = getPriceUrl(pair);
         intervals[exchange]?.setCallback(() =>
-          fetch(priceUrl)
+          fetch(`/proxy?target=${encodeURIComponent(priceUrl)}`)
             .then(res => res.json())
             .then(res => {
               const price = priceDataParser(res);

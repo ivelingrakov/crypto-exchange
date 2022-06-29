@@ -10,11 +10,11 @@ proxy.on('proxyRes', (proxyRes, req, res) => {
 })
 
 const app = express();
+const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(express.static(publicPath));
+app.use(express.static("build"));
 
-const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3000;
 
 
@@ -29,10 +29,10 @@ app.get('/proxy', (req, res) => {
     err => res.status(500).send(err));
 });
 
-app.get('*', (req, res) => {
-   res.sendFile(path.join(publicPath, 'index.html'));
-});
+app.get('*', (req, res) =>
+  res.sendFile(path.join(buildPath, 'index.html'))
+);
 
-app.listen(port, () => {
-   console.log('Server is up!');
-});
+app.listen(port, () =>
+  console.log(`Server is up as ${port}!`)
+);
