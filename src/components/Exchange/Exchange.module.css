@@ -1,5 +1,10 @@
 .container {
-  margin-top: 10px;
+  margin-top: 0.5em;
+  width: 22em;
+}
+
+.container:last-child {
+  padding-bottom: 2em;
 }
 
 .price {
