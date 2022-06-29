@@ -6,6 +6,7 @@ import Modal from '../Modal/Modal';
 import { Direction } from '../../utils/types';
 
 import styles from './Exchange.module.css';
+import Container from '../Container/Container';
 
 type Props = {
   title: string
@@ -22,7 +23,7 @@ const Exchange: React.FC<Props> = ({ title, current, direction, loading }) => {
       visible={showModal}
       close={() => setShowModal(false)}
     />
-    <Col span={6} offset={9} className={styles.container}>
+    <Container className={styles.container}>
       <Card title={`${title[0].toUpperCase()}${title.slice(1)}`}>
         <Skeleton active paragraph={{ rows: 0 }} loading={loading}>
           {!!current
@@ -35,7 +36,7 @@ const Exchange: React.FC<Props> = ({ title, current, direction, loading }) => {
             : <Empty imageStyle={{ height: 40 }} />}
         </Skeleton>
       </Card>
-    </Col>
+    </Container>
   </>
 }
 export default Exchange;
