@@ -12,7 +12,7 @@ const Layout: React.FC<Props> = ({ children }) => {
       className="site-page-header"
       title="Crypto Exchange"
     />
-    <AntdLayout.Content className={styles.content}>
+    <AntdLayout.Content>
       {children}
     </AntdLayout.Content>
   </AntdLayout>

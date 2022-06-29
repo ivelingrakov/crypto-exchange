@@ -1,10 +1,12 @@
+import { Observable, Subscription, timer } from 'rxjs';
+
 class IntervalManager {
-  interval?: NodeJS.Timer;
   callback?: () => void;
-  intervalMs: number;
+  source: Observable<number>;
+  subscription?: Subscription;
 
   constructor(intervalMs: number) {
-    this.intervalMs = intervalMs;
+    this.source = timer(0, intervalMs);
   }
 
   setCallback(callback: () => void) {
@@ -12,19 +14,14 @@ class IntervalManager {
   }
 
   startInterval() {
-    if (!this.interval && this.callback) {
-      this.interval = setInterval(this.callback, this.intervalMs);
+    if (!!this.callback) {
+      this.subscription =
+        this.source.subscribe(() => this.callback!());
     }
   };
 
   stopInterval() {
-    clearInterval(this.interval);
-    this.interval = undefined;
-  }
-
-  resetInterval() {
-    this.stopInterval();
-    this.startInterval();
+    this.subscription && this.subscription.unsubscribe()
   }
 }
 

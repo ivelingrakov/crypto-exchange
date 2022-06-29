@@ -6,7 +6,7 @@ import exchanges from '../../exchanges';
 
 import styles from './Exchanges.module.css';
 import { compareFn } from '../../utils';
-import { Context, State } from '../../utils/types';
+import { Context } from '../../utils/types';
 
 const Exchanges: React.FC = () => {
   const { state }: Context = useContext(ExchangeContext) as Context;
@@ -24,8 +24,7 @@ const Exchanges: React.FC = () => {
           title={title}
           current={current}
           loading={loading}
-          direction={direction
-          }
+          direction={direction}
         />
       })}
   </Container>
