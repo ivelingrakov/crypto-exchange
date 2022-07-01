@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { Card, Col, Empty, Skeleton } from 'antd';
+import { Card, Empty, Skeleton } from 'antd';
 
 import Modal from '../Modal/Modal';
+import Container from '../Container/Container';
 import { Direction } from '../../utils/types';
 
 import styles from './Exchange.module.css';
-import Container from '../Container/Container';
 
 type Props = {
   title: string
