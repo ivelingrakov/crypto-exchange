@@ -4,8 +4,10 @@ import { Descriptions, Empty, Badge } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import Layout from '../../components/Layout/Layout';
 import Container from '../../components/Container/Container';
-import { extractPair } from '../../utils';
 import Spinner from '../../components/Spinner/Spinner';
+import { extractPair } from '../../utils';
+
+import styles from './Details.module.css';
 
 const Details: React.FC = () => {
   const [details, setDetails] = useState<any>(null);
@@ -23,7 +25,7 @@ const Details: React.FC = () => {
   return <Layout>
     {loading ?
       <Spinner /> :
-      <Container>
+      <Container className={styles.container}>
         {details ? <Descriptions title={`${details.symbol} data @ Binance`} bordered>
           <Descriptions.Item label="Status" span={3}>
             <Badge status={details.status === 'TRADING' ? 'success' : 'error'} size="default" text={details.status} />
